@@ -3,34 +3,44 @@ WALPAPER_DEST="/usr/share/backgrounds/Dynamic_Wallpapers"
 XML_DEST="/usr/share/gnome-background-properties/"
 GIT_URL="https://github.com/saint-13/Linux_Dynamic_Wallpapers.git/"
 
-# Clone .git folder -> Lightweigh checkout
-git clone --filter=blob:none --no-checkout "$GIT_URL"
+if [ -z "$1" ]; then
 
-# List files in repo and create array of available walpapers
-walpaper_list="$(git --git-dir Linux_Dynamic_Wallpapers/.git ls-tree --full-name --name-only -r HEAD | \
-	grep xml/ | \
-	sed -e 's/^xml\///' | \
-	sed -e 's/.xml//' | \
-	sed -e 's/$/,,OFF/' | \
-	tr "\n" "," \
-)"
-IFS=',' read -r -a choiceArray <<< "$walpaper_list"
+  	# Clone .git folder -> Lightweigh checkout
+	git clone --filter=blob:none --no-checkout "$GIT_URL"
 
-# Display interactive list to user
-user_selection=$(whiptail --title "Select walpapers to install" --checklist \
-	"Walpapers:" $LINES $COLUMNS $(( $LINES - 8 )) \
-	"${choiceArray[@]}" \
-	3>&1 1>&2 2>&3 | sed -e 's/" "/"\n"/')
+	# List files in repo and create array of available walpapers
+	walpaper_list="$(git --git-dir Linux_Dynamic_Wallpapers/.git ls-tree --full-name --name-only -r HEAD | \
+		grep xml/ | \
+		sed -e 's/^xml\///' | \
+		sed -e 's/.xml//' | \
+		sed -e 's/$/,,OFF/' | \
+		tr "\n" "," \
+	)"
+	IFS=',' read -r -a choiceArray <<< "$walpaper_list"
 
-echo "-----------------"
-echo " ✔️ Selection: "
-echo "-----------------"
-[[ -z "$user_selection" ]] && {
-	echo "❌ No selection, exiting..."
-	exit 1
-} || {
-	echo "$user_selection"
-}
+	# Display interactive list to user
+	user_selection=$(whiptail --title "Select walpapers to install" --checklist \
+		"Walpapers:" $LINES $COLUMNS $(( $LINES - 8 )) \
+		"${choiceArray[@]}" \
+		3>&1 1>&2 2>&3 | sed -e 's/" "/"\n"/')
+
+	echo "-----------------"
+	echo " ✔️ Selection: "
+	echo "-----------------"
+	[[ -z "$user_selection" ]] && {
+		echo "❌ No selection, exiting..."
+		exit 1
+	} || {
+		echo "$user_selection"
+	}
+fi
+
+if [ -n "$1" ]; then
+	param_wallpaper_list=$1
+	echo "Found wallapaper list."
+fi
+
+user_selection=$param_wallpaper_list
 
 # Create directories
 echo "-----------------"
