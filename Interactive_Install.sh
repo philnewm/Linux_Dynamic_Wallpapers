@@ -36,7 +36,8 @@ show_ui_slection () {
 }
 
 if [ "$#" -gt 0 ]; then
-    user_selection=("$@")
+    user_selection=$(printf "%s\n" "$@")
+	echo "user_selection: $user_selection"
     echo "Found wallpaper list."
 else
     show_ui_slection
