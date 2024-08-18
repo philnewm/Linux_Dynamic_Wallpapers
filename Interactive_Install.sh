@@ -4,6 +4,11 @@ XML_DEST="/usr/share/gnome-background-properties/"
 GIT_URL="https://github.com/philnewm/Linux_Dynamic_Wallpapers.git/"
 
 # Clone .git folder -> Lightweigh checkout
+if [ -d Linux_Dynamic_Wallpapers ]; then
+	rm Linux_Dynamic_Wallpapers
+	echo "Cleaned existing git directory"
+fi
+
 git clone --filter=blob:none --no-checkout "$GIT_URL"
 
 show_ui_slection () {
@@ -49,6 +54,7 @@ echo " ⚙️ Configuration"
 echo "-----------------"
 echo "- Walpapers destionation: $WALPAPER_DEST"
 echo "- XML slideshows destination: $XML_DEST"
+
 if [ ! -d "$WALPAPER_DEST" ]; then
 	sudo mkdir -p "$WALPAPER_DEST"
 	echo "✅ Created $WALPAPER_DEST"
