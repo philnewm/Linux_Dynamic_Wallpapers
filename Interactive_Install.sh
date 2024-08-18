@@ -49,12 +49,12 @@ echo " ⚙️ Configuration"
 echo "-----------------"
 echo "- Walpapers destionation: $WALPAPER_DEST"
 echo "- XML slideshows destination: $XML_DEST"
-if [ ! -d "$WALPAPER_DEST" ]: then
+if [ ! -d "$WALPAPER_DEST" ]; then
 	sudo mkdir -p "$WALPAPER_DEST"
 	echo "✅ Created $WALPAPER_DEST"
 fi
 
-if [ ! -d "$WALPAPER_DEST" ]: then
+if [ ! -d "$WALPAPER_DEST" ]; then
 	sudo mkdir -p "$XML_DEST"
 	echo "✅ Created $XML_DEST"
 fi
