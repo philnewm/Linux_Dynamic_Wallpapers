@@ -5,7 +5,7 @@ GIT_URL="https://github.com/philnewm/Linux_Dynamic_Wallpapers.git/"
 
 # Clone .git folder -> Lightweigh checkout
 if [ -d Linux_Dynamic_Wallpapers ]; then
-	rm Linux_Dynamic_Wallpapers
+	rm -Rf Linux_Dynamic_Wallpapers
 	echo "Cleaned existing git directory"
 fi
 
@@ -60,7 +60,7 @@ if [ ! -d "$WALPAPER_DEST" ]; then
 	echo "✅ Created $WALPAPER_DEST"
 fi
 
-if [ ! -d "$WALPAPER_DEST" ]; then
+if [ ! -d "$XML_DEST" ]; then
 	sudo mkdir -p "$XML_DEST"
 	echo "✅ Created $XML_DEST"
 fi
