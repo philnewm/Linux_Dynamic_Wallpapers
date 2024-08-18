@@ -3,10 +3,10 @@ WALPAPER_DEST="/usr/share/backgrounds/Dynamic_Wallpapers"
 XML_DEST="/usr/share/gnome-background-properties/"
 GIT_URL="https://github.com/saint-13/Linux_Dynamic_Wallpapers.git/"
 
-show_ui_slection () {
+# Clone .git folder -> Lightweigh checkout
+git clone --filter=blob:none --no-checkout "$GIT_URL"
 
-  	# Clone .git folder -> Lightweigh checkout
-	git clone --filter=blob:none --no-checkout "$GIT_URL"
+show_ui_slection () {
 
 	# List files in repo and create array of available walpapers
 	walpaper_list="$(git --git-dir Linux_Dynamic_Wallpapers/.git ls-tree --full-name --name-only -r HEAD | \
@@ -35,12 +35,11 @@ show_ui_slection () {
 	}
 }
 
-if [ -n "$1" ]; then
-	param_wallpaper_list=$1
-	echo "Found wallapaper list."
-	user_selection=$param_wallpaper_list
+if [ "$#" -gt 0 ]; then
+    user_selection=("$@")
+    echo "Found wallpaper list."
 else
-	show_ui_slection
+    show_ui_slection
 fi
 
 # Create directories
