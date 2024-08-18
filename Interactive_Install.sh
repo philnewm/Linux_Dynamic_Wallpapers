@@ -49,14 +49,20 @@ echo " ⚙️ Configuration"
 echo "-----------------"
 echo "- Walpapers destionation: $WALPAPER_DEST"
 echo "- XML slideshows destination: $XML_DEST"
-sudo mkdir -p "$WALPAPER_DEST"
-echo "✅ Created $WALPAPER_DEST"
-sudo mkdir -p "$XML_DEST"
-echo "✅ Created $XML_DEST"
+if [ ! -d "$WALPAPER_DEST" ]: then
+	sudo mkdir -p "$WALPAPER_DEST"
+	echo "✅ Created $WALPAPER_DEST"
+fi
+
+if [ ! -d "$WALPAPER_DEST" ]: then
+	sudo mkdir -p "$XML_DEST"
+	echo "✅ Created $XML_DEST"
+fi
 
 echo "-------------------------"
 echo " 🚀 Installing walpapers"
 echo "-------------------------"
+
 while IFS= read -r to_install; do
 	# Delete quotes in name
 	name=$(echo "$to_install" | tr -d '"')
