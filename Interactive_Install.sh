@@ -3,12 +3,13 @@ WALPAPER_DEST="/usr/share/backgrounds/Dynamic_Wallpapers"
 XML_DEST="/usr/share/gnome-background-properties/"
 GIT_URL="https://github.com/philnewm/Linux_Dynamic_Wallpapers.git/"
 
-# Clone .git folder -> Lightweigh checkout
+# Remove existing repo directory if it already exists
 if [ -d Linux_Dynamic_Wallpapers ]; then
-	rm -Rf Linux_Dynamic_Wallpapers
+	sudo rm -Rf Linux_Dynamic_Wallpapers
 	echo "Cleaned existing git directory"
 fi
 
+# Clone .git folder -> Lightweigh checkout
 git clone --filter=blob:none --no-checkout "$GIT_URL"
 
 show_ui_slection () {
@@ -40,6 +41,7 @@ show_ui_slection () {
 	}
 }
 
+# Check for any parameters
 if [ "$#" -gt 0 ]; then
     user_selection=$(printf "%s\n" "$@")
 	echo "user_selection: $user_selection"
@@ -55,6 +57,7 @@ echo "-----------------"
 echo "- Walpapers destionation: $WALPAPER_DEST"
 echo "- XML slideshows destination: $XML_DEST"
 
+# Check for existing directories first
 if [ ! -d "$WALPAPER_DEST" ]; then
 	sudo mkdir -p "$WALPAPER_DEST"
 	echo "✅ Created $WALPAPER_DEST"
