@@ -1,7 +1,7 @@
 #!/bin/bash
 WALPAPER_DEST="/usr/share/backgrounds/Dynamic_Wallpapers"
 XML_DEST="/usr/share/gnome-background-properties/"
-GIT_URL="https://github.com/philnewm/Linux_Dynamic_Wallpapers.git/"
+GIT_URL="https://github.com/saint-13/Linux_Dynamic_Wallpapers.git/"
 
 # Remove existing repo directory if it already exists
 if [ -d Linux_Dynamic_Wallpapers ]; then
