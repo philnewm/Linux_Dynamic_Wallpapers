@@ -62,25 +62,25 @@ while IFS= read -r to_install; do
 	echo "- Installing $name"
 
 	# List jpeg files to install
-	list_to_install=$(git --no-pager --git-dir Linux_Dynamic_Wallpapers/.git show "scriptable-install:Dynamic_Wallpapers/$name" | \
+	list_to_install=$(git --no-pager --git-dir Linux_Dynamic_Wallpapers/.git show "main:Dynamic_Wallpapers/$name" | \
 		tail -n +3)
 
 	# Install jpeg files
 	while IFS= read -r file; do
 		echo " Downloading Dynamic_Wallpapers/$name/$file"
 		sudo mkdir -p "$WALPAPER_DEST/$name"
-		git --no-pager --git-dir Linux_Dynamic_Wallpapers/.git show "scriptable-install:Dynamic_Wallpapers/$name/$file" | \
+		git --no-pager --git-dir Linux_Dynamic_Wallpapers/.git show "main:Dynamic_Wallpapers/$name/$file" | \
 			sudo tee "$WALPAPER_DEST/$name/$file" >/dev/null
 	done <<< "$list_to_install"
 
 	# Install xml
 	echo " Downloading Dynamic_Wallpapers/$name.xml"
-	git --no-pager --git-dir Linux_Dynamic_Wallpapers/.git show "scriptable-install:Dynamic_Wallpapers/$name.xml" | \
+	git --no-pager --git-dir Linux_Dynamic_Wallpapers/.git show "main:Dynamic_Wallpapers/$name.xml" | \
 		sudo tee "$WALPAPER_DEST/$name.xml" >/dev/null
 
 	# Install slideshow xml
 	echo " Downloading xml/$name.xml"
-	git --no-pager --git-dir Linux_Dynamic_Wallpapers/.git show "scriptable-install:xml/$name.xml" | \
+	git --no-pager --git-dir Linux_Dynamic_Wallpapers/.git show "main:xml/$name.xml" | \
 		sudo tee "$XML_DEST/$name.xml" >/dev/null
 done <<< "$user_selection"
 
