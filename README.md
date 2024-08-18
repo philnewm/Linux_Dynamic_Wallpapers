@@ -122,6 +122,10 @@
     ```
     curl -s "https://raw.githubusercontent.com/saint-13/Linux_Dynamic_Wallpapers/main/Interactive_Install.sh" | sudo bash
     ```
+    or use this script to automate the selection
+    ```
+    curl -s "https://raw.githubusercontent.com/saint-13/Linux_Dynamic_Wallpapers/scriptable-install/Interactive_Install.sh" | sudo bash -s "BigSur" "Catalina" "MagicLake" "Mojave" "Elementary-OS-Odin"
+    ```
 3. Select the walpapers you wish to install from the list
 4. Script will download and install only selected ones
 5. Change your wallpaper from: Settings > Backgrounds
